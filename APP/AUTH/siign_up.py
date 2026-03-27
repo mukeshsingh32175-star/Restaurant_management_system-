@@ -21,26 +21,28 @@ def write_json():
        file.write(data) 
              
 
-def user_login():
+def user_login(): 
+    data =True
     while True:
+        
         print("******LOGIN*****")
         print("=====================")
         user_name = input_name()
         user_password = input_password()
         for i in user_data:
-            if  i["name"] == user_name and  i["password"] == user_password and i["role"] == "admin":
-                print("*****LOGIN_SCUSSFUL****",user_name.title())
+            if i["name"]!= user_name or i["password"] != user_password: 
+                data = False
+                continue
+            if  i["name"] == user_name  and  i["password"] == user_password and i["role"] == "admin":
+                print("*****LOGIN____SUCCESSFULY****",user_name.title(),"___SIR***")
                 admin_manage()
-                break
+               
             elif i["role"] == "staff":
                 user_menu()
                 break
             else:       
                 print("****USER_NOT_FOUND****")
                 continue                
-
-
-
 
 
 def user_sign_up():

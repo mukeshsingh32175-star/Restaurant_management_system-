@@ -2,6 +2,8 @@ from APP.MENU.main_menu import show_menu,search_item
 from APP.BOOKING.booak_seat import custmor_seats
 from APP.BOOKING.booak_seat import data_vew
 from APP.BOOKING.booak_seat import custmor_seats
+from APP.ORDER.cstmr_order import customer
+from  APP.BILLING.user_bill import final_bill 
 def user_menu():
     while True:
         print("<<<<USER_MENU>>>>>")     
@@ -12,25 +14,35 @@ def user_menu():
         print("4.GENERATE BILL")
         print("5.SEARCH ITEMS ")
         print("6.BOOKING VIEW")
-        user_input =input("enter your choice:   ")
-        print("=================")
+        user_input =input("enter your choice(1 to 6):   ")
+        print("=" * 30)
+        if not user_input:
+            print("Input can't be empaty....!")
+            continue
+        if user_input.startswith("0"):
+            print("Input must be grater then 0......!")
+            continue
+        if not user_input.isdigit:
+            print("Enter the numbers alphabet is not allowed....!")
+            continue
+         
+        staff_user=int(user_input)
         
-        
-        if user_input == "1":
-             show_menu()
-        elif user_input =="2":
-              None
-        elif  user_input == "3":
-              custmor_seats()
-        elif user_input == "4":
-               None
-        elif user_input == "5" :
+        if staff_user == 1:
+            show_menu()
+        elif staff_user == 2:
+            customer()
+        elif  staff_user == 3:
+            custmor_seats()
+        elif staff_user == 4:
+            final_bill ()
+        elif staff_user == 5 :
             search_item()   
-        elif user_input =="6":
-             data_vew()
+        elif staff_user == 6:
+            data_vew()
                  
         else:
-            print("enter_the_valid_input.....!")
+            print("enter_the_valid_input(1 to 6).....!")
             print (" ....................")   
             
          

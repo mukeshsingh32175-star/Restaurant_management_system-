@@ -3,18 +3,26 @@ from APP.BOOKING.booak_seat import custmor_seats
 from APP.BOOKING.booak_seat import cousmor_booking_data
 # from APP.AUTH.siign_up import user_data
 from APP.BOOKING.booak_seat import custmor_seats
+from APP.ORDER.cstmr_order import customer
 
 
+def delete_data():
+    with open(r"APP\DATABASE\sign_data.json","w") as file:
+        user_data=json.dumps(user_data)
+        file.write(user_data)
+                   
 
 def delete_data():
     print("***DELETE_DATA***")
     delete_name=input("Enter the staff name: ")
     for i in user_data:
-        if i["name"] == user_data:
+        if i["name"] == delete_name:
             i.remove()
+            delete_data()
             print("Deleted data:", i, indent=2)
             print("Data deleted successfully.....!")
             print("==========================")
+            
     
 def admin_manage():
  while True: 
@@ -44,19 +52,19 @@ def admin_manage():
         if  admin_input == 1:
             admin_menu()   
         elif  admin_input == 2 :
-             none 
-            
+            customer()
         elif admin_input  == 3:
              custmor_seats()
         elif admin_input == 4:
-             none 
+               None
         elif  admin_input == 5:
             print("*****ALL BOOKING DATA****")
-            print (cousmor_booking_data,indent=4)
-            print("=======================")     
+            with open (r"APP\DATABASE\boking_data.json","r") as file:
+                print (cousmor_booking_data)
+                print("=======================")     
         elif admin_input  == 6:
              delete_data()
-        else :
+        else :                  
             print ("enter the valid value.....!")  
             continue  
             

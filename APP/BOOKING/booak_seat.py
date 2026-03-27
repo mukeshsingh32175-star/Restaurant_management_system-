@@ -1,6 +1,7 @@
 import json
 from datetime import datetime
 from APP.AUTH.valid_name import input_name
+
 cousmor_booking_data=[]
 def write_data():
     with open (r"APP\DATABASE\boking_data.json","w") as file:
@@ -9,10 +10,10 @@ def write_data():
   
 def read_data():
   with open (r"APP\DATABASE\boking_data.json","r") as file :
-    data=josn.loads(file)
+    data=json.loads(file)
+    file.read(data)
  
 
-  
 def user_input():
   total_seat = 50  
   while True:
@@ -31,13 +32,14 @@ def user_input():
        
         
        booked = int(User_staff)      
-    #    if User_staff > total_seat:
-    #         print(f"........!only {total_seat}seats left....!")
-    #         continue
+    
         
        if booked > total_seat:
             print(f"........! Only {total_seat} seats left. ")
-            continue                     
+            continue
+       if user_table == 1 and User_staff > 5:
+           print("Per table have only 5 seat,tou have to book extra tbale.......!   ")
+           continue                    
         
        else:
             
@@ -85,11 +87,12 @@ def user_time():
         else:
             print("Invalid input. Please enter a valid number of hours (1 / 2).")
             continue
-        # else:
-        #     print("Enter valid input (less than 12 hours)...!")
+        return seat_hour,"hr"
+     
                 
 def data_vew():
     while True:
+        
         print("*******8BOOKING_DATA******") 
         print("=============================")
         print("1.SEARCH BOOKING ")
@@ -117,7 +120,7 @@ def data_vew():
         elif staff_input == 2:
                 print("***All booking data*****")
                 print("=====================")
-                print(cousmor_booking_data,indent=4) 
+                print(cousmor_booking_data) 
                 print("=========================")
                 break          
         elif staff_input == 3:
@@ -297,7 +300,8 @@ def two_hour():
             print("Invalid input....!,After - 9:00 PM booking is not allowed...!")
             print("resturant is closing time...!")
             continue
-        
+
+user_table=0        
 def booking_table():
     total_table = 10
     while True:
@@ -314,6 +318,8 @@ def booking_table():
         elif user_table.startswith("0"):
             print("Input can't be 0 or start with zero...!")
             continue
+        # if user_staff > 5 and user_table == 1 :
+        #     print("1 table have only ")
         
         
         booked = int(user_table)           
@@ -328,8 +334,7 @@ def booking_table():
             print(f"   Remaining tables: {total_table}")
             print("=================================")
             return user_table
-            break
-
+         
 def custmor_seats():
   print("........<<SEAT_BOOKING>>.......")
   book_data={}
@@ -337,8 +342,7 @@ def custmor_seats():
   book_data["table "] = booking_table()
   book_data["seats"]= user_input()
   book_data["user_time"] =user_time()
-  book_data["date_time"]=datetime.now()
-  book_data["date"]=date.today()
+  book_data["date_time"]= datetime.now().strftime("%Y-%m-%d %H:%M:%S")
   cousmor_booking_data.append(book_data)
   write_data()
   print("*******Seat_booking_scussfully******")
