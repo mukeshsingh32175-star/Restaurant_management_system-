@@ -1,87 +1,40 @@
 [
-    {
-        "ID": "e519",
-        "name": "mukesh",
-        "email": "mukesh123@gmail.com",
-        "password": "mukesh@123",
-        "role": "admin"
-    },
-    {
-        "ID": "f475",
-        "name": "karAN",
-        "email": "karan123@gmail.com",
-        "password": "karan123@2",
-        "role": "staff"
-    },
-    {
-        "ID": "g789",
-        "name": "suresh",
-        "email": "suresh123@gmail.com",
-        "password": "suresh@123",
-        "role": "staff"
-    },
-    {
-        "ID": "d9e9",
-        "name": "mukesh",
-        "email": "ankit123@gmail.com",
-        "password": "ankit@123",
-        "role": null,
-        "datetime": "2026-03-23 14:51:30"
-    },
-    {
-        "ID": "d737",
-        "name": "mukesh",
-        "email": "mukesh123@gmail.com",
-        "password": "mukehs@234",
-        "role": null,
-        "datetime": "2026-03-23 15:12:44"
-    },
-    {
-        "ID": "0967",
-        "name": "mukesh",
-        "email": "mukesh123@gmail.com",
-        "password": "mukesh!123",
-        "role": null,
-        "datetime": "2026-03-23 15:17:09"
-    },
-    {
-        "ID": "5cea",
-        "name": "tara",
-        "email": "mukesh123@gmail.com",
-        "password": "tara!123",
-        "role": null,
-        "datetime": "2026-03-23 15:54:03"
-    },
-    {
-        "ID": "7adf",
-        "name": "mukesh",
-        "email": "ramesh123@gmail.com",
-        "password": "ramesh!123!",
-        "role": null,
-        "datetime": "2026-03-23 15:59:59"
-    },
-    {
-        "ID": "58f0",
-        "name": "mukesh",
-        "email": "karan123@gmail.com",
-        "password": "karan@123",
-        "role": null,
-        "datetime": "2026-03-23 16:58:54"
-    },
-    {
-        "ID": "91f6",
-        "name": "mukesh",
-        "email": "mukesh123@gmail.com",
-        "password": "mukesh@1234",
-        "role": null,
-        "datetime": "2026-03-23 17:00:52"
-    },
-    {
-        "ID": "4992",
-        "name": "priyanka",
-        "email": "priyanka123@gmail.com",
-        "password": "hills@!23",
-        "role": "staff",
-        "datetime": "2026-03-26 13:33:32"
-    }
+  {
+    "ID": "f475",
+    "name": "karAN",
+    "email": "karan123@gmail.com",
+    "password": "karan123@2",
+    "role": "staff"
+  },
+  {
+    "ID": "g789",
+    "name": "suresh",
+    "email": "suresh123@gmail.com",
+    "password": "suresh@123",
+    "role": "staff"
+  },
+  {
+    "ID": "d737",
+    "name": "mukesh",
+    "email": "mukesh123@gmail.com",
+    "password": "mukesh@234",
+    "role": "admin",
+    "datetime": "2026-03-23 15:12:44"
+  },
+  {
+    "ID": "5cea",
+    "name": "tara",
+    "email": "mukesh123@gmail.com",
+    "password": "tara!123",
+    "role": "staff",
+    "datetime": "2026-03-23 15:54:03"
+  },
+  {
+    "ID": "58f0",
+    "name": "mukesh",
+    "email": "karan123@gmail.com",
+    "password": "karan@123",
+    "role": "staff",
+    "datetime": "2026-03-23 16:58:54"
+  }
 ]
