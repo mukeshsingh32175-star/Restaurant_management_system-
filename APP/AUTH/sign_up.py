@@ -62,7 +62,7 @@ def user_sign_up():
                 print("invalid input. plese enter a valid choice....!")
                 continue
             choice =int(user_choice)
-            if choice == "2":
+            if choice == 2:
              print("******SIGN_UP****")
              user_data={}
              user_data["ID"]=(uuid.uuid4().hex[:4])
@@ -77,11 +77,11 @@ def user_sign_up():
              print("============================")
              user_menu()
         
-            elif choice == '1':
+            elif choice == 1:
                 user_login()
       
          
-            elif choice == '3':
+            elif choice == 3:
                 print("EXITING........!") 
                 break 
             else:
