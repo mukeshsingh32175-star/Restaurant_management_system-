@@ -71,7 +71,7 @@ def user_sign_up():
              user_data["password"]=input_password()
              user_data["role"]=None
              user_data["sign_up_datetime"]=(datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
-             user_data.append(user_data) 
+             data.append(user_data) 
              write_json()
              print("......SIGN_UP_SCUSSFUL.....",)
              print("============================")
