@@ -1,17 +1,40 @@
-from APP.AUTH.valid_name import input_name
-from APP.MENU.main_menu import user_menu
-from APP.MENU.main_menu import read_menu
-from APP.MENU.main_menu import write_menu
+from APP.AUTH.valid_name import input_name                   
 from APP.AUTH import data_modes
+from APP.MENU.main_menu import user_menu
 import json
 import datetime
 
-def vlaid_table():
+
+
+coustomer_data = []
+    
+def write_order():
+    with open (r"APP\DATABASE\order_data.json","w") as file:
+       order_data= json.dumps(coustomer_data)
+       file.write(order_data)
+
+
+           
+read_table=data_modes.write_json(r"APP\DATABASE\order_data.json",coustomer_data)       
+
+def valid_table():
     while True:
         try:
-            total_table =10
+            # data = read_order()
+            total_table = 10
         
             table_number =input("enter the table number :  ").strip()
+            # for data in read_table:
+            #     if data["table_number"] == table_number:
+            #         print("table number already booked. please choose  another table.")
+            #         continue
+            #     if data["table_number"] != table_number:
+                    
+            #         continue
+            # break    
+            # if  read_table > total_table:
+            #     print("sorry, no more tables available.")
+            #     break
             if not table_number:
                 print("input cant't be emapty....!")
                 continue
@@ -21,7 +44,10 @@ def vlaid_table():
             elif table_number.startswith('0'):
                 print("input can't be start with zero.....!")
                 continue
+            
             table  =int(table_number)
+            
+            
             if table < 1 or table > total_table:
                 print("invalid table number. please enter a number between 1 and", total_table)
                 continue
@@ -29,16 +55,32 @@ def vlaid_table():
             if total_table < 0:
                 print("sorry, no more tables available.")
                 continue
-            elif table > total_table:
-                print(" only", table, "tables are available.")
-                continue
+            # elif data["table_number"] > total_table:
+            #     print(" only", table, "tables are available.")
+            #     continue
+            # for data in read_table:
+            #     if data["table_number"] == table_number:
+            #         print("table number already booked. please choose  another table.")
+            #         continue
+            #     # if data["table_number"] > total_table:
+            #     #     print("")
+            #     #     continue
+            # break    
+            # if  read_table > total_table:
+            #     print("sorry, no more tables available.")
+            #     break
            
             else:
                 print('remanig tables:', total_table)
                 return table
         except Exception as error:  
             print( error)
-            data_modes.erroer_write(error_message=str(error))
+            error_data=[
+                {               "error_message": str(error),                
+                    "datetime": data_modes.datetime.now().strftime("%Y-%m-%d %H:%M:%S")  
+                }
+            ]
+            data_modes.erroer_write(json.dumps(error_data))
             continue
 
         
@@ -74,77 +116,43 @@ def valid_seats():
                 return seats_number 
         except Exception as error:
             print( error)
-            data_modes.erroer_write(error_message=str(error))
+            
+            error_data=[
+                {
+                    "error_message": str(error),
+                    "datetime": data_modes.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                }
+                
+            ]
+            data_modes.erroer_write(json.dumps(error_data))
             continue       
 
-def read_order():
-    with open (r"APP\DATABASE\order_data.json","r") as file:
-       order_data= json.loads(file.read())
-    
-    
-def write_order():
-    with open (r"APP\DATABASE\order_data.json","w") as file:
-       order_data= json.dumps(coustomer_data)
-       file.write(order_data)
+  
 
-# def order():
-#     while True:
-#         print("******ORDER******")
-#         print('=========================')
-#         total= 0
-#         customer=input("enter the item name:  ").strip()
-#         if not customer:
-#             print("input can't be emapty....!") 
-#             continue
-        
-#         if not  customer.isalpha():
-#             print("invalid input. please enter a valid input......!") 
-#             continue  
-#         for item in user_menu:
-#             if customer in item[category]:
-#                 qantity=input("enter the quantity:  ").strip()
-#                 if not qantity:
-#                     print("input can't be emapty....!") 
-#                     continue
-#                 if not qantity.isdigit():
-#                     print("invalid input. please enter a valid quantity......!") 
-#                     continue
-#                 if qantity.startswith('0'):
-#                     print("input can't be start with zero.....!")
-#                     continue
-#                 Qantities =int(qantity)
-#                 if Qantities < 1:
-#                     print("invalid quantity. please enter a number greater than 0.")
-#                     continue
-#                 price = user_menu[category][customer] * Qantities
-#                 total += price
-#                 # print("Price:", price)
-#                 break
-#             else:
-#                 print("item not found in the menu. please enter a valid item name.")
-#                 continue
-   
     
     
 ordered_items = []   
 total = 0
 def order():
-
+    
+    total = 0
     print("\n****** PLACE YOUR ORDER ******")
     print("=" * 35)
 
     while True:
         try:
-            customer = input("\nEnter the item name (or 'done' to finish): ").strip().title()
+            customer = input("\nEnter the item name (or 'done' to finish): ").strip()
             if not customer:
                 print(" Input cannot be empty!")
                 continue
 
             if customer.lower() == 'done':
              break
+            found = False
 
-            for item in user_menu:
-             if customer in item:
+            for category, items in user_menu.items():
+             if customer in items:
+                found = True
                 while True:   
                     quantity = input(f"Enter quantity for {customer}: ").strip()
                     if not quantity:
@@ -167,27 +175,37 @@ def order():
            
                     price = user_menu[category][customer] * qty
                     total += price
-                    ordered_items.append(f"{qty} x {customer:<15} {price}")
+                    ordered_items.append(f"{qty}  {customer:<15} {price}")
                     break
-            else:
+                break
+            if not found:
                 print(f"'{customer}' not found in the menu. Please try again.")
                 continue
         except Exception as error:
             print( error)
-            data_modes.erroer_write(error_message=str(error))
+            error_data=[
+                {
+                    "error_message": str(error),
+                    "datetime": data_modes.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                }
+                
+            ]
+            data_modes.erroer_write(json.dumps(error_data))
             continue  
 
-coustomer_data={}
 def customer():
-    while True:
+   
         
+        coustomer={}
         print("******ORDER******")
         print("=========================")
-        coustomer_data["name"]=input_name()
-        coustomer_data["table_number"]=vlaid_table(),
-        coustomer_data["seats_number"]= valid_seats()
-        coustomer_data["order"]= order() 
-        coustomer_data["order_time"]= (datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+        coustomer["name"]=input_name()
+        coustomer["table_number"]=valid_table()
+        coustomer["seats_number"]= valid_seats()
+        coustomer["order"]= order() 
+        coustomer["order_time"]= (datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+        coustomer_data.append(coustomer)
         write_order()
         print("______________Table booking successful_____________!")
+        print("=========================================")
      

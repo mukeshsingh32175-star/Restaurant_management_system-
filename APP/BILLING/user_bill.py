@@ -1,5 +1,7 @@
 from APP.ORDER.cstmr_order import ordered_items,total
 from APP.ORDER.cstmr_order import coustomer_data
+import json
+from datetime import datetime
 from APP.AUTH import data_modes
 
 def final_bill():
@@ -9,15 +11,25 @@ def final_bill():
                if  not cus_name:
                     print("input cant't be emapty...........!")
                     continue
+               if not cus_name.isalpha():
+                    print("invalid input,please enter a valid name....!")
+                    continue
+               if cus_name.startswith('0'):
+                    print("input can't be start with zero.....!")
+                    continue
+               
+                  
                print("******TOTAL_BILL******")
                print("=========================")
-               if cus_name  == coustomer_data["name"]:
-                    print("Coustomer Name:",coustomer_data["name"])
-                    print("Table Number:",coustomer_data["table_number"])
-                    print("Seats Number:",coustomer_data["seats_number"])
+               for data in coustomer_data:
+                    if data["name"] == cus_name:
+                         print(data["name"])
+                         print(data["table_number"])
+                         print(data["seats_number"])  
                     print("\nYour Ordered Items:")
+                    print("===========================")
                     if ordered_items:
-                         for item in ordered_items:
+                        for item in ordered_items:
                               print(item, ordered_items[item])
                               print("===========================")
                               print(f"Total Bill Amount : {total}")
@@ -32,9 +44,17 @@ def final_bill():
                else:
                     print("coustomer name not found.....!")
                     continue
+               
        except Exception as error:
                print( error)
-               data_modes.erroer_write(error_message=str(error))
+               error_data=[
+                {
+                    "error_message": str(error),
+                    "datetime": data_modes.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                }
+                
+            ]
+               data_modes.erroer_write(json.dumps(error_data))
                continue     
  
  
@@ -74,7 +94,13 @@ def payment():
                break
           except Exception as error:
                print( error)
-               data_modes.erroer_write(error_message=str(error))
+               error_data=[
+                {
+                    "error_message": str(error),
+                    "datetime": data_modes.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                }   
+               ]    
+               data_modes.erroer_write(json.dumps(error_data))
                continue   
     
            

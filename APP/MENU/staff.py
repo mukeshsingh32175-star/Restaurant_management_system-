@@ -49,7 +49,14 @@ def user_menu():
                 continue
         except Exception as error:
             print( error)
-            data_modes.erroer_write(error_message=str(error))
+            error_data=[
+                {
+                    "error_message": str(error),
+                    "datetime": data_modes.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                }
+                
+            ]
+            data_modes.erroer_write(json.dumps(error_data))
             continue     
             
          

@@ -97,7 +97,14 @@ def user_time():
             return seat_hour,"hr"
        except Exception as error:
             print( error)
-            data_modes.erroer_write(error_message=str(error))
+            error_data=[
+                {
+                    "error_message": str(error),
+                    "datetime": data_modes.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                }
+                
+            ]
+            data_modes.erroer_write(json.dumps(error_data))
             continue
      
                 
@@ -143,7 +150,13 @@ def data_vew():
                 continue
         except Exception as error:
             print( error)
-            data_modes.erroer_write(error_message=str(error))
+            error_data=[
+                {             "error_message": str(error),      
+                    "datetime": data_modes.datetime.now().strftime("%Y-%m-%d %H:%M:%S")  
+                    }   
+            ]
+            data_modes.erroer_write(json.dumps(error_data))
+          
             continue    
                                
 def one_hour():
@@ -252,7 +265,12 @@ def one_hour():
                 continue
         except Exception as error:
             print( error)
-            data_modes.erroer_write(error_message=str(error))
+            error_data=[
+                {       "error_message": str(error),       
+                        "datetime": data_modes.datetime.now().strftime("%Y-%m-%d %H:%M:%S")  
+                        }       
+                ]   
+            data_modes.erroer_write(json.dumps(error_data))
             continue    
                 
 def two_hour(): 
@@ -324,7 +342,12 @@ def two_hour():
                 continue
         except Exception as error:
             print( error)
-            data_modes.erroer_write(error_message=str(error))
+            error_data=[
+                {             "error_message": str(error),
+                    "datetime": data_modes.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                    }
+            ]
+            data_modes.erroer_write(json.dumps(error_data))
             continue    
 
 user_table=0        
@@ -365,7 +388,14 @@ def booking_table():
             
         except Exception as error:
             print( error)
-            data_modes.erroer_write(error_message=str(error))
+            error_data=[
+                {
+                    "error_message": str(error),
+                    "datetime": data_modes.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                }
+                
+            ]
+            data_modes.erroer_write(json.dumps(error_data))
             continue
          
 def custmor_seats():

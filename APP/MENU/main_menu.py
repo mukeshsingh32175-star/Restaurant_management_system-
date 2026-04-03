@@ -1,5 +1,7 @@
 # from collections import defaultdict
 import json
+from datetime import datetime
+from APP.AUTH.data_modes import read_json
 from APP.AUTH import data_modes
 
 
@@ -81,7 +83,13 @@ def show_menu():
             print(item,":",price)
   except Exception as error:
     print( error)
-    data_modes.erroer_write(error_message=str(error))          
+    error_data=[  
+                {
+                    "error_message": str(error),                 
+                    "datetime": data_modes.datetime.now().strftime("%Y-%m-%d %H:%M:%S")  
+                }
+            ]
+    data_modes.erroer_write(json.dumps(error_data))          
 
 
 def add_item():
@@ -126,7 +134,12 @@ def add_item():
       break
     except Exception as error:
       print( error)
-      data_modes.erroer_write(error_message=str(error))
+      error_data=[
+                { "error_message": str(error),               
+                  "datetime": data_modes.datetime.now().strftime("%Y-%m-%d %H:%M:%S")  
+                }
+              ]
+      data_modes.erroer_write(json.dumps(error_data))
   
 
 
@@ -182,7 +195,13 @@ def delete_item():
         continue
     except Exception as error:
       print( error)
-      data_modes.erroer_write(error_message=str(error))
+      error_data=[
+                { "error_message": str(error),  
+                  "datetime": data_modes.datetime.now().strftime("%Y-%m-%d %H:%M:%S") 
+                }
+              ]
+      data_modes.erroer_write(json.dumps(error_data))
+     
       continue  
 
 
@@ -230,7 +249,13 @@ def update_item():
       break
     except Exception as error:      
       print( error)
-      data_modes.erroer_write(error_message=str(error))
+      error_data=[
+                { "error_message": str(error),    
+                  "datetime": data_modes.datetime.now().strftime("%Y-%m-%d %H:%M:%S")  
+                } 
+              ]
+      data_modes.erroer_write(json.dumps(error_data))
+ 
       continue
 
 def search_item():
@@ -258,7 +283,13 @@ def search_item():
         continue  
     except Exception as error:
       print(error)
-      data_modes.erroer_write(error_message=str(error))
+      error_data=[
+                { "error_message": str(error),               
+                  "datetime": data_modes.datetime.now().strftime("%Y-%m-%d %H:%M:%S")  
+                }
+              ]
+      
+      data_modes.erroer_write(json.dumps(error_data))
       continue
      
       
@@ -308,6 +339,11 @@ def admin_menu():
         continue
    except Exception as error:
       print( error)
-      data_modes.erroer_write(error_message=str(error))
+      error_data=[
+                { "error_message": str(error),               
+                  "datetime": data_modes.datetime.now().strftime("%Y-%m-%d %H:%M:%S")  
+                }
+              ]
+      data_modes.erroer_write(json.dumps(error_data))
       continue  
         

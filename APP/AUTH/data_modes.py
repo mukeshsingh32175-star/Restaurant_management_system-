@@ -1,4 +1,6 @@
 import json
+from datetime import datetime
+
 def read_json(path):
     with open (path,"r") as file:
        save_data= json.loads(file.read())
@@ -13,3 +15,9 @@ def write_json(path,data):
 def  erroer_write(error_message):
     with open (r"APP\LOGS\error_data.txt","w") as file:
         file.write(error_message)
+        
+def read_order(path):
+    with open (path,"r") as file:
+       order_data= json.loads(file.read())
+    
+                   

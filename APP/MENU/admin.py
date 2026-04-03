@@ -3,6 +3,7 @@ from APP.BOOKING.booak_seat import custmor_seats
 from APP.BOOKING.booak_seat import cousmor_booking_data
 from APP.AUTH.data_modes import read_json
 import json
+from datetime import datetime
 from APP.BOOKING.booak_seat import custmor_seats
 from APP.ORDER.cstmr_order import customer
 from APP.AUTH import data_modes
@@ -32,8 +33,13 @@ def delete_data():
         break
     except Exception as error:
         print( error)
-        data_modes.erroer_write(error_message=str(error))
-        continue            
+        error_data=[
+                { "error_message": str(error),               
+                  "datetime": data_modes.datetime.now().strftime("%Y-%m-%d %H:%M:%S")  
+                }
+              ]
+        data_modes.erroer_write(json.dumps(error_data))
+        continue           
     
 def admin_manage():
  while True:
@@ -80,7 +86,14 @@ def admin_manage():
                 continue  
      except Exception as error:
             print( error)
-            data_modes.erroer_write(error_message=str(error))
+            error_data=[
+                {
+                    "error_message": str(error),
+                    "datetime": (data_modes.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+                }
+                
+            ]
+            data_modes.erroer_write(json.dumps(error_data))
             continue      
             
 

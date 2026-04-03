@@ -1,7 +1,7 @@
 [
   {
     "ID": "f475",
-    "name": "karAN",
+    "name": "karan",
     "email": "karan123@gmail.com",
     "password": "karan123@2",
     "role": "staff"
@@ -24,7 +24,7 @@
   {
     "ID": "5cea",
     "name": "tara",
-    "email": "mukesh123@gmail.com",
+    "email": "tara123@gmail.com",
     "password": "tara!123",
     "role": "staff",
     "datetime": "2026-03-23 15:54:03"

@@ -9,6 +9,7 @@ from APP.MENU.admin import admin_manage
 from APP.AUTH import data_modes
 
 data=[]
+error_data=[]
 
 user_data = data_modes.read_json(r"APP\DATABASE\sign_data.json") 
              
@@ -27,7 +28,7 @@ def user_login():
                     data = False
                     continue
                 if      i["name"] == user_name  and  i["password"] == user_password and i["role"] == "admin":
-                    print("*****LOGIN____SUCCESSFULY****",user_name.title(),"___SIR***")
+                    print("*****LOGIN____SUCCESSFULY****",user_name.title(),"___SIR/MAM***")
                     admin_manage()
                
                 elif i["role"] == "staff":
@@ -38,7 +39,7 @@ def user_login():
                 continue     
       except Exception as error:
             print( error)
-            data_modes.erroer_write(error_message=str(error))
+            data_modes.erroer_write(json.dumps(error_data))
             continue               
 
 
@@ -50,6 +51,7 @@ def user_sign_up():
             print("1.LOGIN")
             print("2.SIGN_UP")
             print("3>EXIT...>")
+     
             user_choice=input("enter your choice: ")
             print("==============================")
             if user_choice.startswith('0'):
@@ -89,5 +91,12 @@ def user_sign_up():
                 continue
         except Exception as error:
             print( error)
-            data_modes.erroer_write(error_message=str(error))
+            error_data=[
+                {
+                    "error_message": str(error),
+                    "datetime": data_modes.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                }
+                
+            ]
+            data_modes.erroer_write(json.dumps(error_data))
             continue

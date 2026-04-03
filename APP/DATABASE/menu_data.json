@@ -37,7 +37,7 @@
     "Lassi": 60,
     "Mango Shake": 80,
     "Coffee": 50,
-    "Tea": 20
+    "Tea": 30
   },
   "desserts": {
     "Gulab Jamun": 60,
@@ -45,6 +45,6 @@
     "Ice Cream": 80,
     "Chocolate Cake": 120,
     "Jalebi": 70,
-    "Kheer": 100
+    "Halwa": 50
   }
 }
